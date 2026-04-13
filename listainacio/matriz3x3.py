@@ -12,4 +12,4 @@ soma = 0
 for i in range(3):
     soma += matriz[i][i]
 
-print("Soma:", soma)
+print("Soma:", soma) 
