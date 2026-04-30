@@ -1,30 +1,57 @@
-opcao = 0 
+opcao = 0
+dados = []
+
 def menu():
-    print("Escolha uma das opções abaixo:")
+    print("\nEscolha uma das opções abaixo:")
     print("1 - INCLUIR")
     print("2 - REMOVER")
     print("3 - ALTERAR")
     print("4 - LISTAR")
     print("5 - SAIR")
-    opcao = int(input())
-    if (opcao > 0 and opcao < 5):
-        return opcao
-    else:
-        if (opcao == 5):
-            exit(0) #função para sair do sistema
+    return int(input("Digite a opção: "))
 
-# FAZENDO TRATAMENTO DE EXCESSAÕ
-try:
-     opcao = menu()
 
-except ValueError:
-    print("voce digitou um caracter errado")
+while True:
+    try:
+        opcao = menu()
 
-except ZeroDivisionError:
-    print("nao e possivel dividir por zero.")
+        if opcao == 1:
+            item = input("Digite o item para incluir: ")
+            dados.append(item)
+            print("Item adicionado com sucesso!")
 
-else:
-    print("codigo executado sem erros.")
+        elif opcao == 2:
+            item = input("Digite o item para remover: ")
+            if item in dados:
+                dados.remove(item)
+                print("Item removido!")
+            else:
+                print("Item não encontrado.")
 
-finally: 
-    print("fim do programa")
+        elif opcao == 3:
+            item = input("Qual item deseja alterar? ")
+            if item in dados:
+                novo = input("Digite o novo valor: ")
+                index = dados.index(item)
+                dados[index] = novo
+                print("Item alterado com sucesso!")
+            else:
+                print("Item não encontrado.")
+
+        elif opcao == 4:
+            print("\nLista de itens:")
+            for i, item in enumerate(dados, start=1):
+                print(f"{i} - {item}")
+
+        elif opcao == 5:
+            print("Saindo do sistema...")
+            break
+
+        else:
+            print("Opção inválida!")
+
+    except ValueError:
+        print("Você digitou um valor inválido! Digite apenas números.")
+    
+    finally:
+        print("Operação finalizada.\n")
